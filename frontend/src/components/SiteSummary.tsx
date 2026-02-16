@@ -22,7 +22,7 @@ export default function SiteSummary({ selections, layout }: Props) {
     { label: 'Total Energy', value: formatEnergy(totalEnergy) },
     { label: 'Total Cost', value: formatCurrency(totalCost) },
     { label: 'Transformers', value: String(transformerCount) },
-    { label: 'Land Size', value: `${layout.totalWidth} x ${layout.totalDepth} ft` },
+    { label: 'Land Size', value: layout.items.length > 0 ? `${layout.totalWidth} x ${layout.totalDepth} ft` : '—' },
   ];
 
   return (
@@ -30,7 +30,7 @@ export default function SiteSummary({ selections, layout }: Props) {
       <Text size="xs" fw={600} tt="uppercase" c="dimmed" style={{ letterSpacing: 1 }}>
         Site Summary
       </Text>
-      <SimpleGrid cols={4} spacing="sm">
+      <SimpleGrid cols={{ base: 2, sm: 4 }} spacing="sm">
         {items.map((item) => (
           <Paper key={item.label} p="lg" radius="md" withBorder>
             <Text size="xs" c="dimmed" tt="uppercase" fw={500} style={{ letterSpacing: 0.5 }}>

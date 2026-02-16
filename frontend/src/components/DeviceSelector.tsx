@@ -1,4 +1,4 @@
-import { Stack, Text, Group, NumberInput, Card } from '@mantine/core';
+import { Stack, Text, Group, NumberInput, Card, Button } from '@mantine/core';
 import { DeviceSelection } from '../types';
 import { DEVICES } from '../data/devices';
 
@@ -25,9 +25,16 @@ export default function DeviceSelector({ selections, onChange }: Props) {
 
   return (
     <Stack gap="sm">
-      <Text size="xs" fw={600} tt="uppercase" c="dimmed" style={{ letterSpacing: 1 }}>
-        Battery Selection
-      </Text>
+      <Group justify="space-between" align="center">
+        <Text size="xs" fw={600} tt="uppercase" c="dimmed" style={{ letterSpacing: 1 }}>
+          Battery Selection
+        </Text>
+        {selections.length > 0 && (
+          <Button size="compact-xs" variant="subtle" color="red" onClick={() => onChange([])}>
+            Clear All
+          </Button>
+        )}
+      </Group>
       {DEVICES.map((device) => (
         <Card key={device.id} padding="md" radius="md" withBorder>
           <Group justify="space-between" wrap="nowrap">

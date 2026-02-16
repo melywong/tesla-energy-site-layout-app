@@ -10,7 +10,7 @@ A site layout tool for configuring Industrial Energy Battery sites. Users select
 - **Auto Transformers** — 1 transformer is auto-added for every 2 batteries (rounded up)
 - **Site Summary** — Real-time total cost, energy output, transformer count, and land dimensions
 - **2D Site Layout** — SVG visualization with row-packing algorithm (max 100ft width)
-- **Session Persistence** — Shareable URL links (survive cache clears) + backend database storage for local dev
+- **Session Persistence** — localStorage save/load, shareable URL links, and backend database storage (local dev)
 - **Responsive** — Sidebar + content layout adapts to screen size
 
 ## Tech Stack
@@ -73,8 +73,9 @@ pytest
 
 ## Session Persistence
 
-- **Local dev**: Sessions are saved to the backend SQLite database via the API
-- **GitHub Pages**: Click "Copy Shareable Link" to encode your configuration into the URL. Bookmark or share the link to restore the layout later. This survives cache clears since the state is in the URL itself.
+- **localStorage**: Sessions are saved/loaded in the browser's local storage. Available everywhere, persists across page reloads.
+- **Shareable Links**: Click "Copy Shareable Link" to encode your configuration into the URL. Bookmark or share the link to restore the layout later.
+- **Backend API** (local dev): When the Python backend is running, sessions are saved to a SQLite database instead.
 
 ## Project Structure
 

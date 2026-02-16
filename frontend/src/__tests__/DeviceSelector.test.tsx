@@ -30,4 +30,19 @@ describe('DeviceSelector', () => {
     });
     expect(onChange).toHaveBeenCalledWith([{ deviceId: 'megapack', quantity: 3 }]);
   });
+
+  it('does not show Clear All button when no selections', () => {
+    renderWithMantine(<DeviceSelector selections={[]} onChange={() => {}} />);
+    expect(screen.queryByText('Clear All')).not.toBeInTheDocument();
+  });
+
+  it('shows Clear All button and clears selections on click', () => {
+    const onChange = vi.fn();
+    const selections = [{ deviceId: 'megapack', quantity: 3 }];
+    renderWithMantine(<DeviceSelector selections={selections} onChange={onChange} />);
+    const clearBtn = screen.getByText('Clear All');
+    expect(clearBtn).toBeInTheDocument();
+    fireEvent.click(clearBtn);
+    expect(onChange).toHaveBeenCalledWith([]);
+  });
 });
